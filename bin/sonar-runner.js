@@ -23,14 +23,13 @@ function execSonarScanner(command) {
     command.unshift(projectBaseDir);
     command.unshift(sonarCommand);
 
-    var sys = require('sys');
     var exec = require('child_process').exec;
 
     exec(command.join(' '), function (error, stdout, stderr) {
-        sys.print('stdout: ' + stdout);
-        sys.print('stderr: ' + stderr);
+        console.log('stdout: ', stdout.toString('utf8'));
+        console.log('stderr: ', stderr.toString('utf8'));
         if (error !== null) {
-            console.log('exec error: ' + error);
+            console.error(error);
         }
     });
 }
